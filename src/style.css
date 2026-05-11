@@ -47,6 +47,17 @@ body {
   height: 100%;
   object-fit: cover;
   filter: brightness(0.4);
+  will-change: transform;
+}
+
+/* Optimize Mobile: Disable Video Background */
+@media (max-width: 768px) {
+  .video-bg-container {
+    background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+  }
+  .video-bg {
+    display: none;
+  }
 }
 
 .video-overlay {
@@ -238,6 +249,16 @@ ul {
   animation: glitch-anim2 5s infinite linear alternate-reverse;
 }
 
+@media (max-width: 768px) {
+  .glitch {
+    font-size: 2.8rem;
+    animation: none; /* Disable complex animation on mobile */
+  }
+  .glitch::before, .glitch::after {
+    display: none; /* Remove heavy pseudo-elements on mobile */
+  }
+}
+
 @keyframes glitch-anim {
   0% { clip: rect(31px, 9999px, 94px, 0); }
   5% { clip: rect(70px, 9999px, 71px, 0); }
@@ -353,6 +374,14 @@ ul {
   backface-visibility: hidden;
   overflow: hidden;
   border: 1px solid var(--glass-border);
+  will-change: transform;
+}
+
+@media (max-width: 768px) {
+  .pc-card {
+    height: 480px;
+    transform: none !important; /* Disable 3D tilt on mobile for performance */
+  }
 }
 
 .pc-card:hover,

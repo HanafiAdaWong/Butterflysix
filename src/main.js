@@ -95,6 +95,9 @@ navLinks.forEach(link => {
 // Subtle parallax for Hero
 const hero = document.querySelector('.hero-overlay');
 window.addEventListener('scroll', () => {
+    // Disable parallax on mobile for performance
+    if (window.innerWidth < 768) return;
+    
     const scrolled = window.pageYOffset;
     if (hero) {
         hero.style.transform = `translateY(${scrolled * 0.5}px)`;
