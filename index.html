@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="https://ik.imagekit.io/lhtvft4ai/butterfly.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Butterfly Six | Squad Page</title>
+    <meta name="description" content="Website resmi kami berenam, mahasiswa Teknik Informatika Universitas Budi Darma. Berisi profil, galeri, nobar, dan perpustakaan." />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Video Background -->
+        <div class="video-bg-container">
+            <video autoplay muted loop playsinline class="video-bg">
+                <source src="https://ik.imagekit.io/lhtvft4ai/4K%20Beautiful%20Anime%20Scenery.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="#home" class="logo">
+                    <span class="text-emerald-500">Butterfly</span><span>Six</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active" data-section="home">Beranda</a></li>
+                    <li><a href="#gallery" class="nav-link" data-section="gallery">Galeri</a></li>
+                    <li><a href="#nobar" class="nav-link" data-section="nobar">Nobar</a></li>
+                    <li><a href="#library" class="nav-link" data-section="library">Perpustakaan</a></li>
+                </ul>
+                <div class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i data-lucide="menu"></i>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <!-- Hero Section -->
+            <section id="home" class="section active">
+                <div class="hero">
+                    <div class="hero-overlay"></div>
+                    <div class="hero-content">
+                        <h1 class="glitch" data-text="Mahasiswa Teknik Informatika">Mahasiswa Teknik Informatika</h1>
+                        <p class="subtitle">Universitas Budi Darma • Angkatan 2025</p>
+                        <div class="hero-description">
+                            Kami adalah kelompok enam sahabat yang sedang menempuh perjalanan di dunia teknologi. Bersama-sama, kami membangun masa depan melalui kode dan inovasi.
+                        </div>
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <span class="stat-value">6</span>
+                                <span class="stat-label">Anggota</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">UBD</span>
+                                <span class="stat-label">Kampus</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">TI</span>
+                                <span class="stat-label">Prodi</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <h2 class="section-title">Anggota</h2>
+                    <div class="squad-grid" id="squadGrid">
+                        <!-- Profile cards will be injected by ProfileCard.js -->
+                        <div id="member1"></div>
+                        <div id="member2"></div>
+                        <div id="member3"></div>
+                        <div id="member4"></div>
+                        <div id="member5"></div>
+                        <div id="member6"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gallery Section -->
+            <section id="gallery" class="section">
+                <div class="container">
+                    <h2 class="section-title">Momen</h2>
+                    <div id="masonryContainer" style="width: 100%; min-height: 600px;"></div>
+                </div>
+            </section>
+
+            <!-- Nobar Section -->
+            <section id="nobar" class="section">
+                <div class="container">
+                    <div class="nobar-container">
+                        <div class="nobar-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+                            <h3 style="color: var(--text-main); font-weight: 600; font-size: 1.5rem; margin: 0;">Donghua Sedang Tayang</h3>
+                            <div class="search-box" style="display: flex; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 8px; overflow: hidden; max-width: 300px; width: 100%;">
+                                <input type="text" id="searchInput" placeholder="Cari donghua..." style="background: transparent; border: none; color: white; padding: 0.5rem 1rem; outline: none; width: 100%;">
+                                <button id="searchBtn" style="background: var(--primary-color); border: none; color: white; padding: 0.5rem 1rem; cursor: pointer;"><i data-lucide="search" style="width: 18px; height: 18px;"></i></button>
+                            </div>
+                        </div>
+
+                        <div id="detailView" style="display: none; margin-bottom: 2rem;">
+                            <button id="backBtn" style="background: transparent; border: none; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;"><i data-lucide="arrow-left" style="width: 16px;"></i> Kembali</button>
+                            <div id="seriesInfo" style="display: flex; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;"></div>
+                            
+                            <div id="playerFrameContainer" style="margin-bottom: 2rem; display: none;"></div>
+                            
+                            <h3 id="serverTitle" style="color: var(--text-main); font-size: 1.2rem; margin-bottom: 1rem; display: none; align-items: center; gap: 0.5rem;"><i data-lucide="monitor-play" style="width: 20px;"></i> Pilih Server</h3>
+                            <div id="serverListContainer" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem;"></div>
+                            
+                            <h3 style="color: var(--text-main); font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;"><i data-lucide="list-video" style="width: 20px;"></i> Daftar Episode</h3>
+                            <div id="episodeListContainer" style="display: flex; flex-wrap: wrap; gap: 0.5rem; max-height: 300px; overflow-y: auto;"></div>
+                        </div>
+                        
+                        <div id="listsContainer">
+                            <h3 id="ongoingTitle" style="color: var(--text-main); font-weight: 600; font-size: 1.2rem; margin-bottom: 1rem; display: none;">Sedang Tayang</h3>
+                            <div class="movie-list-placeholder" id="nobarList">
+                                <div class="movie-card-skeleton"></div>
+                                <div class="movie-card-skeleton"></div>
+                                <div class="movie-card-skeleton"></div>
+                                <div class="movie-card-skeleton"></div>
+                            </div>
+                            
+                            <h3 id="completedTitle" style="color: var(--text-main); font-weight: 600; font-size: 1.2rem; margin-top: 3rem; margin-bottom: 1rem; display: none;">Tamat</h3>
+                            <div class="movie-list-placeholder" id="completedList">
+                                <div class="movie-card-skeleton"></div>
+                                <div class="movie-card-skeleton"></div>
+                                <div class="movie-card-skeleton"></div>
+                                <div class="movie-card-skeleton"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Library Section -->
+            <section id="library" class="section">
+                <div class="container">
+                    <div class="nobar-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+                        <h2 class="section-title" style="margin: 0;">Pojok Baca Komik</h2>
+                        <div class="search-box" style="display: flex; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 8px; overflow: hidden; max-width: 300px; width: 100%;">
+                            <input type="text" id="comicSearchInput" placeholder="Cari komik..." style="background: transparent; border: none; color: white; padding: 0.5rem 1rem; outline: none; width: 100%;">
+                            <button id="comicSearchBtn" style="background: var(--primary-color); border: none; color: white; padding: 0.5rem 1rem; cursor: pointer;"><i data-lucide="search" style="width: 18px; height: 18px;"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Comic Reader View -->
+                    <div id="comicReaderView" style="display: none; margin-bottom: 2rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; background: var(--glass-bg); padding: 1rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                            <button id="comicBackBtn" style="background: transparent; border: none; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 0.5rem;"><i data-lucide="arrow-left" style="width: 16px;"></i> Kembali</button>
+                            <h3 id="comicChapterTitle" style="color: var(--text-main); font-size: 1.1rem; margin: 0; text-align: center; flex: 1;">Chapter Title</h3>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button id="comicPrevBtn" style="background: rgba(255,255,255,0.1); border: none; color: white; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer;" disabled><i data-lucide="chevron-left" style="width: 16px;"></i></button>
+                                <button id="comicNextBtn" style="background: var(--primary-color); border: none; color: white; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer;" disabled><i data-lucide="chevron-right" style="width: 16px;"></i></button>
+                            </div>
+                        </div>
+                        <div id="comicImagesContainer" style="display: flex; flex-direction: column; align-items: center; max-width: 800px; margin: 0 auto; background: #000; min-height: 500px;">
+                            <!-- Comic images will be injected here -->
+                        </div>
+                        <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem;">
+                            <button id="comicPrevBtnBottom" style="background: rgba(255,255,255,0.1); border: none; color: white; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;" disabled><i data-lucide="chevron-left" style="width: 16px;"></i> Prev</button>
+                            <button id="comicNextBtnBottom" style="background: var(--primary-color); border: none; color: white; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;" disabled>Next <i data-lucide="chevron-right" style="width: 16px;"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Comic Detail View -->
+                    <div id="comicDetailView" style="display: none; margin-bottom: 2rem;">
+                        <button id="comicDetailBackBtn" style="background: transparent; border: none; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; font-size: 0.95rem;">
+                            <i data-lucide="arrow-left" style="width: 16px;"></i> Kembali ke Daftar
+                        </button>
+                        <div id="comicDetailContent">
+                            <!-- Detail content will be injected here -->
+                        </div>
+                    </div>
+
+                    <!-- Comic List View -->
+                    <div id="comicListView">
+                        <div class="library-grid" id="comicListContainer">
+                            <div class="movie-card-skeleton" style="height: 300px;"></div>
+                            <div class="movie-card-skeleton" style="height: 300px;"></div>
+                            <div class="movie-card-skeleton" style="height: 300px;"></div>
+                            <div class="movie-card-skeleton" style="height: 300px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <span class="text-emerald-500">UBD</span>Six
+                    </div>
+                    <p>&copy; 2025 Butterfly Informatics Six. Dibuat dengan oleh kami.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
