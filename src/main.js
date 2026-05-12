@@ -157,7 +157,7 @@ const members = [
         title: 'Teknik Informatika',
         handle: 'mhdriskii22',
         status: 'Online',
-        avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Fahmi',
+        avatarUrl: 'https://ik.imagekit.io/lhtvft4ai/riski.jpeg',
         contactUrl: 'https://www.instagram.com/mhdriskii22/'
     }
 ];
